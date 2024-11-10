@@ -24,7 +24,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, totalItems } = await getTopCryptos(
+        const { totalItems } = await getTopCryptos(
           10,
           currentPage,
           userPriceLimit
