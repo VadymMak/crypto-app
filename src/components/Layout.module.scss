@@ -1,0 +1,25 @@
+/* src/components/Layout.module.scss */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the layout takes up at least the full height of the viewport */
+}
+
+.mainContent {
+  flex: 1; /* Takes up all available space, leaving footer at the bottom */
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 20px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}

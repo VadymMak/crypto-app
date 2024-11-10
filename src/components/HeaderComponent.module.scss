@@ -1,0 +1,40 @@
+/* src/components/HeaderComponent.module.scss */
+@import "../styles/variables";
+
+.header {
+  background-color: $primary-color;
+  padding: 20px;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  text-align: center;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Spacing between nav items */
+  }
+
+  li {
+    display: inline;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #34495e;
+    }
+  }
+}
