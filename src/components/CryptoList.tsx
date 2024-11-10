@@ -16,6 +16,7 @@ const CryptoList: React.FC<CryptoListProps> = ({ currentPage, priceLimit }) => {
       setLoading(true);
       try {
         const { data } = await getTopCryptos(10, currentPage, priceLimit);
+        console.log("Data from request inside list: ", data);
         setCryptoData(data);
       } catch (error) {
         console.error("Error fetching crypto data:", error);

@@ -24,12 +24,16 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { totalItems } = await getTopCryptos(
+        console.log(
+          `Fetching data for page: ${currentPage} with price limit: ${userPriceLimit}`
+        );
+        const { data, totalItems } = await getTopCryptos(
           10,
           currentPage,
           userPriceLimit
         );
         dispatch(setTotalPages(Math.ceil(totalItems / 10)));
+        console.log(`Data for Page ${currentPage}:`, data);
       } catch (error) {
         console.error("Error fetching crypto data:", error);
       }

@@ -1,4 +1,3 @@
-// src/api/coinGecko.ts
 import axios from "axios";
 
 const COINGECKO_API_URL = "https://api.coingecko.com/api/v3";
@@ -20,18 +19,17 @@ export const getTopCryptos = async (
       params: {
         vs_currency: "usd",
         order: "market_cap_desc",
-        per_page: limit, // Number of items per page
-        page: page, // Current page number
+        per_page: limit,
+        page: page,
       },
     });
 
-    // Filter data based on price limit
     const filteredData = response.data.filter(
       (coin: CryptoData) => coin.current_price <= userPriceLimit
     );
 
-    // Assume the total number of items for pagination purposes, you can modify this as needed
-    const totalItems = 1000; // This might need to be dynamic if the API gives the total number of items.
+    const totalItems = 1000; // Mock value for testing
+    console.log(`Page: ${page}, Returned Data:`, filteredData);
 
     return { data: filteredData, totalItems };
   } catch (error) {
