@@ -2,11 +2,7 @@
 import React, { useState, useEffect } from "react";
 import CryptoList from "../components/CryptoList";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setCurrentPage,
-  setPriceLimit,
-  setTotalPages,
-} from "../store/cryptoSlice";
+import { setCurrentPage, setTotalPages } from "../store/cryptoSlice";
 import styles from "./Home.module.scss";
 import { getTopCryptos } from "../api/coinGecko";
 import Pagination from "../components/Pagination";
