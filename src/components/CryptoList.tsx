@@ -1,40 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { getTopCryptos, CryptoData } from "../api/coinGecko";
+import React from "react";
+import { useSelector } from "react-redux";
+import { CryptoData } from "../store/cryptoSlice"; // Make sure this is imported
 import Loader from "./Loader";
 
-interface CryptoListProps {
-  currentPage: number;
-  priceLimit: number;
-}
+const CryptoList: React.FC = () => {
+  const { currentPage, priceLimit, allCryptos } = useSelector(
+    (state: any) => state.crypto
+  );
 
-const CryptoList: React.FC<CryptoListProps> = ({ currentPage, priceLimit }) => {
-  const [cryptoData, setCryptoData] = useState<CryptoData[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const { data } = await getTopCryptos(10, currentPage, priceLimit);
-        console.log("Data from request inside list: ", data);
-        setCryptoData(data);
-      } catch (error) {
-        console.error("Error fetching crypto data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [currentPage, priceLimit]);
+  // Filter the coins based on price limit and pagination
+  const filteredCryptos = allCryptos
+    .filter((coin: CryptoData) => coin.current_price <= priceLimit)
+    .slice((currentPage - 1) * 10, currentPage * 10); // Pagination: 10 coins per page
 
   return (
     <div>
-      {loading ? (
+      {filteredCryptos.length === 0 ? (
         <Loader />
       ) : (
         <ul>
-          {cryptoData.map((coin) => (
+          {filteredCryptos.map((coin: CryptoData) => (
             <li key={coin.id}>
               <h2>{coin.name}</h2>
               <p>Price: ${coin.current_price}</p>
