@@ -8,10 +8,12 @@ const CryptoList: React.FC = () => {
     (state: any) => state.crypto
   );
 
-  // Filter the coins based on price limit and pagination
+  // Check if allCryptos is available before calling filter
   const filteredCryptos = allCryptos
-    .filter((coin: CryptoData) => coin.current_price <= priceLimit)
-    .slice((currentPage - 1) * 10, currentPage * 10); // Pagination: 10 coins per page
+    ? allCryptos
+        .filter((coin: CryptoData) => coin.current_price <= priceLimit)
+        .slice((currentPage - 1) * 10, currentPage * 10)
+    : []; // If allCryptos is undefined or null, return an empty array
 
   return (
     <div>

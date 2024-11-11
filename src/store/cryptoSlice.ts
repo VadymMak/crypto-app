@@ -1,10 +1,11 @@
+// src/store/cryptoSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CryptoState {
   currentPage: number;
   totalPages: number;
   priceLimit: number;
-  allCryptos: CryptoData[]; // Store all cryptocurrencies here
+  allCryptos: CryptoData[];
 }
 
 export type CryptoData = {
@@ -17,7 +18,7 @@ export type CryptoData = {
 const initialState: CryptoState = {
   currentPage: 1,
   totalPages: 10,
-  priceLimit: 1,
+  priceLimit: 1, // Default price limit to 1 USD
   allCryptos: [], // Initialize with an empty array
 };
 
@@ -35,10 +36,10 @@ const cryptoSlice = createSlice({
       state.priceLimit = action.payload;
     },
     setAllCryptos(state, action: PayloadAction<CryptoData[]>) {
-      state.allCryptos = action.payload; // Store all cryptos
+      state.allCryptos = action.payload; // Store initial set of cryptos
     },
     appendCryptos(state, action: PayloadAction<CryptoData[]>) {
-      state.allCryptos = [...state.allCryptos, ...action.payload]; // Append new data to existing
+      state.allCryptos = [...state.allCryptos, ...action.payload]; // Append new data
     },
   },
 });
