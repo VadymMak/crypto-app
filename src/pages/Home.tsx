@@ -13,7 +13,7 @@ import CryptoList from "../components/CryptoList";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const { currentPage, priceLimit, totalPages, allCryptos } = useSelector(
+  const { currentPage, priceLimit, totalPages } = useSelector(
     (state: any) => state.crypto
   );
 
